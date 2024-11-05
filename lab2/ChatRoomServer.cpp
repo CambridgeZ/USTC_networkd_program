@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <poll.h>
+#include <string>
 
 #define BUFFER_SIZE 64
 #define USER_LIMIT 5
@@ -137,8 +138,15 @@ int main(int argc, char *argv[]){
             }else if(fds[i].revents & POLLIN){//可读事件
                 //处理客户端数据
                 int connfd = fds[i].fd;
+                
                 memset(users[connfd].buf,'\0',BUFFER_SIZE);
-                ret = recv(connfd,users[connfd].buf,BUFFER_SIZE-1,0);
+                char from_which_client[100] = "from ";
+                strcat(from_which_client,inet_ntoa(users[connfd].address.sin_addr));
+                strcat(from_which_client,":");
+                strcat(from_which_client,std::to_string(ntohs(users[connfd].address.sin_port)).c_str());
+                strcat(from_which_client,": ");
+                strcat(users[connfd].buf,from_which_client);
+                ret = recv(connfd,users[connfd].buf + strlen(from_which_client),BUFFER_SIZE-1,0);
                 printf("get %d bytes of client data %s from %d\n",ret,users[connfd].buf,connfd);
                 if(ret < 0){
                     if(errno != EAGAIN){

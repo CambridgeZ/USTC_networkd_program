@@ -33,6 +33,6 @@ eg:
 
 eg:
 ```shell
-./CharRoomClient 127.0.0.1 12345
+./ChatRoomClient 127.0.0.1 12345
 ```
 

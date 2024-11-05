@@ -1,4 +1,3 @@
-#define _GNU_SOURCE 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,8 +10,14 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <poll.h>
+#include <iostream>
+
+using std::cout;
 
 #define BUFFER_SIZE 64
+#define _GNU_SOURCE 1
+
+
 int main(int argc,char* argv[]){
     if(argc <= 2){
         printf("usage: %s ip_address port_number\n",basename(argv[0]));
@@ -66,6 +71,7 @@ int main(int argc,char* argv[]){
             recv(fds[1].fd,read_buf,BUFFER_SIZE-1,0);
             printf("%s\n",read_buf);
         }
+        
         if(fds[0].revents & POLLIN){
             //使用splice将用户输入的数据直接写到sockfd上（零拷贝）
             ret = splice(0,NULL,pipefd[1],NULL,32768,SPLICE_F_MORE | SPLICE_F_MOVE);//从标准输入读取数据到管道
