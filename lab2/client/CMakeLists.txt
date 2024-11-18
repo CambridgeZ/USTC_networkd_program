@@ -1,0 +1,7 @@
+PROJECT(client)
+
+SET(CMAKE_CXX_STANDARD 11)
+
+FILE(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+
+add_executable(client ${SRC_FILES})
