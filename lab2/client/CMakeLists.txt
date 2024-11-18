@@ -1,7 +1,11 @@
-PROJECT(client)
+cmake_minimum_required(VERSION 3.5)
 
-SET(CMAKE_CXX_STANDARD 11)
+project(ChatClientApp)
 
-FILE(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+set(CMAKE_CXX_STANDARD 11)
 
-add_executable(client ${SRC_FILES})
+find_package(Qt5Widgets REQUIRED)
+
+add_executable(ChatClientApp main.cpp ChatClient.cpp)
+
+target_link_libraries(ChatClientApp Qt5::Widgets)
