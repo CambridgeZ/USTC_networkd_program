@@ -1,0 +1,5 @@
+/home/parallels/Desktop/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/ChatClientApp.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/edit_cache.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/rebuild_cache.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/ChatClientApp_autogen_timestamp_deps.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/ChatClientApp_autogen.dir
