@@ -1,5 +1,4 @@
 
-
 #include "./config.hpp"
 #include "ChatClient.hpp"
 
