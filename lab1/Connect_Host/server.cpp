@@ -1,12 +1,7 @@
-#define _GNU_SOURCE 1
-#define BUFSIZ 1024
-
 #include <iostream>
 #include <string>
-#include <cstring>
-#include <cstdlib>
-#include <thread>
-#include <atomic>
+#include <vector>
+#include <deque>
 #include <mutex>
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
@@ -14,10 +9,11 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::vector;
+using std::deque;
 
 typedef websocketpp::server<websocketpp::config::asio> server;
 
-// WebSocket 服务端处理器
 class WebSocketServer {
 public:
     WebSocketServer() {
@@ -45,22 +41,34 @@ public:
         ws_server.run();              // 启动服务
     }
 
+    // 用于发送消息到所有客户端
+    void send_message_to_clients(const string& message) {
+        std::lock_guard<std::mutex> lock(conn_mutex);
+        for (auto& conn : connections) {
+            try {
+                string server_message = "Server: " + message; // 加前缀标识为服务器消息
+                ws_server.send(conn, server_message, websocketpp::frame::opcode::text);
+            } catch (const websocketpp::exception& e) {
+                cout << "Error sending message: " << e.what() << endl;
+            }
+        }
+    }
+
 private:
     server ws_server;
-    std::vector<websocketpp::connection_hdl> connections; // 连接列表
-    std::mutex conn_mutex;                                // 保护 connections 的互斥锁
+    vector<websocketpp::connection_hdl> connections; // 保存当前连接的客户端
+    std::mutex conn_mutex;                           // 保护 connections 的互斥锁
+    deque<string> message_queue;                     // 保存收到的消息队列
+    std::mutex msg_mutex;                            // 保护消息队列的互斥锁
 
-    // 处理新连接
     void on_open(websocketpp::connection_hdl hdl) {
-        std::lock_guard<std::mutex> lock(conn_mutex); // 确保线程安全
+        std::lock_guard<std::mutex> lock(conn_mutex);
         connections.push_back(hdl);
         cout << "Client connected" << endl;
     }
 
-    // 处理关闭连接
     void on_close(websocketpp::connection_hdl hdl) {
-        std::lock_guard<std::mutex> lock(conn_mutex); // 确保线程安全
-        // 使用 owner_before 方法比较句柄
+        std::lock_guard<std::mutex> lock(conn_mutex);
         connections.erase(std::remove_if(connections.begin(), connections.end(),
                                          [&hdl](const websocketpp::connection_hdl& conn) {
                                              return !conn.owner_before(hdl) && !hdl.owner_before(conn);
@@ -69,27 +77,48 @@ private:
         cout << "Client disconnected" << endl;
     }
 
-    // 处理消息
     void handle_message(websocketpp::connection_hdl hdl, server::message_ptr msg) {
         string received_message = msg->get_payload();
+
+        // 将消息保存到队列中
+        {
+            std::lock_guard<std::mutex> lock(msg_mutex);
+            message_queue.push_back(received_message);
+            if (message_queue.size() > 100) { // 保留最近的100条消息
+                message_queue.pop_front();
+            }
+        }
+
         cout << "Received: " << received_message << endl;
 
-        // 回显消息
-        std::lock_guard<std::mutex> lock(conn_mutex); // 确保线程安全
+        // 广播消息到所有连接的客户端
+        std::lock_guard<std::mutex> lock(conn_mutex);
         for (auto& conn : connections) {
             try {
-                ws_server.send(conn, "Echo: " + received_message, websocketpp::frame::opcode::text);
+                ws_server.send(conn, received_message, websocketpp::frame::opcode::text);
             } catch (const websocketpp::exception& e) {
                 cout << "Error sending message: " << e.what() << endl;
             }
         }
     }
 };
- 
+
 int main() {
     uint16_t port = 9002;
     WebSocketServer server;
-    std::cout << "Starting WebSocket server on port " << port << std::endl;
-    server.run(port);
+
+    cout << "Starting WebSocket server on port " << port << endl;
+    std::thread server_thread([&server, port]() { server.run(port); });
+
+    // 在服务器端发送消息
+    string input_message;
+    while (true) {
+        cout << "Enter message to broadcast: ";
+        std::getline(std::cin, input_message);
+        if (input_message == "exit") break;
+        server.send_message_to_clients(input_message); // 调用函数发送消息
+    }
+
+    server_thread.join();
     return 0;
 }
