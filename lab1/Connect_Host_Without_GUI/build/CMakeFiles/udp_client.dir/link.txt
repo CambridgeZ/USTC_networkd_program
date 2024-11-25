@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/udp_client.dir/main.cpp.o CMakeFiles/udp_client.dir/UdpClient.cpp.o CMakeFiles/udp_client.dir/MessageReceiver.cpp.o -o udp_client 
+/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/udp_client.dir/main.cpp.o CMakeFiles/udp_client.dir/UdpClient.cpp.o CMakeFiles/udp_client.dir/MessageReceiver.cpp.o -o udp_client

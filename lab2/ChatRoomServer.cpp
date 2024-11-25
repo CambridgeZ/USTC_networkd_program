@@ -162,10 +162,10 @@ int main(int argc, char *argv[]){
                 }else{
                     //将数据发送给其他客户端
                     for(int j=1;j<=user_counter;j++){
-                        if(fds[j].fd == connfd){
-                            //跳过自己
-                            continue;
-                        }
+                        // if(fds[j].fd == connfd){
+                        //     //跳过自己
+                        //     continue;
+                        // }
                         fds[j].events |= ~POLLIN; //取消监听可读事件
                         fds[j].events |= POLLOUT; //监听可写事件
                         users[fds[j].fd].write_buf = users[connfd].buf;
