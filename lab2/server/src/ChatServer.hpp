@@ -31,6 +31,14 @@ private:
 
 public:
     void run();
+
+    void send_msg_to_all(char* msg){
+        for(int i=1;i<=user_counter;i++){
+            if(fds[i].fd != -1){
+                send(fds[i].fd,msg,strlen(msg),0);
+            }
+        }
+    }
 };
 
 

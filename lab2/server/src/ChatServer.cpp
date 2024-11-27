@@ -66,6 +66,27 @@ void ChatServer::run(){
                 fds[user_counter].events = POLLIN | POLLRDHUP | POLLERR;//监听可读、对端关闭、错误事件
                 fds[user_counter].revents = 0;//初始化为0
                 printf("comes a new user,now have %d users\n",user_counter);
+                // 向所有的客户群发新用户的信息，告诉所有用户新的用户的 ip 和 port
+                char welcome[100];
+                memset(welcome,'\0',100);
+                
+                strcat(welcome,inet_ntoa(client_address.sin_addr));
+                strcat(welcome,":");
+                strcat(welcome,std::to_string(ntohs(client_address.sin_port)).c_str());
+                strcat(welcome," is online\n");
+
+                // for(int j=1;j<=user_counter;j++){
+                //     if(fds[j].fd == connfd){
+                //         //跳过自己
+                //         continue;
+                //     }
+                //     fds[j].events |= ~POLLIN; //取消监听可读事件
+                //     fds[j].events |= POLLOUT; //监听可写事件
+                //     users[fds[j].fd].write_buf = welcome;
+                // }
+                send_msg_to_all(welcome);
+
+
             }else if(fds[i].revents & POLLERR){
                 //出错
                 printf("get an error from %d\n",fds[i].fd);
@@ -85,6 +106,27 @@ void ChatServer::run(){
                 i--;
                 user_counter--;
                 printf("a client left\n");
+                
+                // 向所有的用户发送离开的用户的ip和port
+                char leave[100];
+                memset(leave,'\0',100);
+                strcat(leave,"a user left\n");
+                strcat(leave,inet_ntoa(users[fds[i].fd].address.sin_addr));
+                strcat(leave,":");
+                strcat(leave,std::to_string(ntohs(users[fds[i].fd].address.sin_port)).c_str());
+                strcat(leave," is offline\n");
+
+                // for(int j=1;j<=user_counter;j++){
+                //     if(fds[j].fd == fds[i].fd){
+                //         //跳过自己
+                //         continue;
+                //     }
+                //     fds[j].events |= ~POLLIN; //取消监听可读事件
+                //     fds[j].events |= POLLOUT; //监听可写事件
+                //     users[fds[j].fd].write_buf = leave;
+                // }
+                send_msg_to_all(leave);
+
             }else if(fds[i].revents & POLLIN){//可读事件
                 //处理客户端数据
                 int connfd = fds[i].fd;
