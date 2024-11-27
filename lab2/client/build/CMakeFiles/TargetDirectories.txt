@@ -1,0 +1,3 @@
+/home/parallels/Desktop/USTC_networkd_program/lab2/client/build/CMakeFiles/ChatClientApp.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client/build/CMakeFiles/edit_cache.dir
+/home/parallels/Desktop/USTC_networkd_program/lab2/client/build/CMakeFiles/rebuild_cache.dir
