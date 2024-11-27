@@ -1,3 +1,0 @@
-/home/ubuntu/USTC_networkd_program/lab1/Connect_Host/server_Pro/build/CMakeFiles/WebSocketServer.dir
-/home/ubuntu/USTC_networkd_program/lab1/Connect_Host/server_Pro/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/USTC_networkd_program/lab1/Connect_Host/server_Pro/build/CMakeFiles/rebuild_cache.dir
