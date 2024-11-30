@@ -1,4 +1,0 @@
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI_QT_v1.1/build/CMakeFiles/QtClient.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI_QT_v1.1/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI_QT_v1.1/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI_QT_v1.1/build/CMakeFiles/QtClient_autogen.dir
