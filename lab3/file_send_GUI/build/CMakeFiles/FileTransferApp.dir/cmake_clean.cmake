@@ -1,4 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FileTransferApp_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/FileTransferApp_autogen.dir/ParseCache.txt"
+  "FileTransferApp_autogen"
+  "CMakeFiles/FileTransferApp.dir/FileTransferApp_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/FileTransferApp.dir/FileTransferApp_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/FileTransferApp.dir/main.cpp.o"
   "CMakeFiles/FileTransferApp.dir/main.cpp.o.d"
   "FileTransferApp"

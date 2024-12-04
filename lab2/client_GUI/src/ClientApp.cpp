@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QApplication>
 
+
+
 ClientApp::ClientApp(QWidget *parent) : QWidget(parent), retryCount(0) {
     setWindowTitle("Socket Client");
 

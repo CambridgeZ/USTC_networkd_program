@@ -1,3 +1,4 @@
-/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/FileTransferApp.dir
-/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/edit_cache.dir
-/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/FileTransferApp.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI/build/CMakeFiles/FileTransferApp_autogen.dir

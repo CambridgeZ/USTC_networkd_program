@@ -1,0 +1,4 @@
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI_final/build/CMakeFiles/SocketClient.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI_final/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI_final/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/USTC_networkd_program/lab3/file_send_GUI_final/build/CMakeFiles/SocketClient_autogen.dir
