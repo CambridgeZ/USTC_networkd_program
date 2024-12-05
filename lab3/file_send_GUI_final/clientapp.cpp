@@ -232,7 +232,7 @@ void ClientApp::acceptFileConnection() {
 }
 
 void ClientApp::receiveFile() {
-    static QFile receivedFile("received_file"); // 每次覆盖，实际应用可动态生成文件名
+    static QFile receivedFile("received_file"); 
     if (!receivedFile.isOpen()) {
         if (!receivedFile.open(QIODevice::WriteOnly)) {
             QMessageBox::warning(this, "Error", "Cannot open file for writing.");
