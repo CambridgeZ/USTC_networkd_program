@@ -1,0 +1,3 @@
+/home/ubuntu/USTC_networkd_program/lab2/server/build/CMakeFiles/server.dir
+/home/ubuntu/USTC_networkd_program/lab2/server/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/USTC_networkd_program/lab2/server/build/CMakeFiles/rebuild_cache.dir

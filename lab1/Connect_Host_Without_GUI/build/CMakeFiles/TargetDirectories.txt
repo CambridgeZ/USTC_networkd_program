@@ -1,0 +1,3 @@
+/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab1/Connect_Host_Without_GUI/build/CMakeFiles/udp_client.dir
+/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab1/Connect_Host_Without_GUI/build/CMakeFiles/edit_cache.dir
+/Users/mac/Desktop/USTC课程/USTC_networkd_program/lab1/Connect_Host_Without_GUI/build/CMakeFiles/rebuild_cache.dir
