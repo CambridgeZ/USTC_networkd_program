@@ -1,6 +1,0 @@
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/src/CMakeFiles/SocketClient.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/src/CMakeFiles/edit_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/src/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/USTC_networkd_program/lab2/client_GUI/build/src/CMakeFiles/SocketClient_autogen.dir
